@@ -4,24 +4,36 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/providers/task_providers.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key});
+class EditTaskScreen extends StatefulWidget {
+  final TaskModel task;
+
+  const EditTaskScreen({super.key, required this.task});
 
   @override
-  State<AddTaskScreen> createState() => _AddTaskScreenState();
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
 }
 
-class _AddTaskScreenState extends State<AddTaskScreen> {
-  final _titleController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  DateTime _selectedDate = DateTime.now();
+class _EditTaskScreenState extends State<EditTaskScreen> {
+  late TextEditingController _titleController;
+  late TextEditingController _descriptionController;
+  late DateTime _selectedDate;
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.task.title);
+    _descriptionController = TextEditingController(
+      text: widget.task.description,
+    );
+    _selectedDate = widget.task.date;
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _selectedDate,
-      firstDate: DateTime.now(),
+      firstDate: DateTime(2020),
       lastDate: DateTime.now().add(const Duration(days: 365)),
       builder: (context, child) {
         return Theme(
@@ -44,32 +56,30 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     }
   }
 
-  void _saveTask() {
+  void _updateTask() {
     if (_formKey.currentState!.validate()) {
       final title = _titleController.text.trim();
       final description = _descriptionController.text.trim();
 
-      final newTask = TaskModel(
-        id: DateTime.now().millisecondsSinceEpoch,
-        title: title,
-        description: description,
-        date: _selectedDate,
-        isCompleted: false,
-        createdAt: DateTime.now(),
-      );
+      widget.task.title = title;
+      widget.task.description = description;
+      widget.task.date = _selectedDate;
+      widget.task.save();
 
-      Provider.of<TaskProviders>(context, listen: false).addTask(newTask);
+      Provider.of<TaskProviders>(context, listen: false).notifyListeners();
 
-      // Show sarcastic success message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('Task added! Will you actually do it? 🤔'),
+          content: const Text('Task updated! Still gonna procrastinate? 😏'),
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       );
 
+      Navigator.pop(context);
       Navigator.pop(context);
     }
   }
@@ -92,7 +102,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          'Add Task',
+          'Edit Task',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -106,7 +116,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             children: [
               // Sarcastic header
               Text(
-                "Another task to ignore? 😏",
+                "Changing your mind again? 🙄",
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.onSurface,
@@ -114,7 +124,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                "Let's pretend you'll complete this one.",
+                "At least you're trying to organize!",
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withOpacity(0.6),
                 ),
@@ -127,7 +137,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 style: TextStyle(color: theme.colorScheme.onSurface),
                 decoration: InputDecoration(
                   labelText: 'Task Title',
-                  hintText: 'What are you avoiding today?',
                   prefixIcon: const Icon(Icons.title, color: Colors.redAccent),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -136,12 +145,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   fillColor: isDark ? Colors.grey[850] : Colors.grey[100],
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.redAccent,
+                      width: 2,
+                    ),
                   ),
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Come on, at least give it a title!';
+                    return 'Title cannot be empty!';
                   }
                   return null;
                 },
@@ -154,9 +166,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 maxLines: 4,
                 style: TextStyle(color: theme.colorScheme.onSurface),
                 decoration: InputDecoration(
-                  labelText: 'Description (Optional)',
-                  hintText: 'Details you\'ll probably forget...',
-                  prefixIcon: const Icon(Icons.description, color: Colors.redAccent),
+                  labelText: 'Description',
+                  prefixIcon: const Icon(
+                    Icons.description,
+                    color: Colors.redAccent,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -164,7 +178,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   fillColor: isDark ? Colors.grey[850] : Colors.grey[100],
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.redAccent,
+                      width: 2,
+                    ),
                   ),
                   alignLabelWithHint: true,
                 ),
@@ -192,12 +209,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           Text(
                             'Due Date',
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.6),
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.6,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            DateFormat('EEEE, MMMM dd, yyyy').format(_selectedDate),
+                            DateFormat(
+                              'EEEE, MMMM dd, yyyy',
+                            ).format(_selectedDate),
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.onSurface,
@@ -222,9 +243,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               const SizedBox(height: 30),
 
-              // Save Button
+              // Update Button
               ElevatedButton(
-                onPressed: _saveTask,
+                onPressed: _updateTask,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.redAccent,
                   foregroundColor: Colors.white,
@@ -237,10 +258,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Icon(Icons.check_circle_outline, size: 24),
+                    Icon(Icons.update, size: 24),
                     SizedBox(width: 8),
                     Text(
-                      'Save Task',
+                      'Update Task',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -264,10 +285,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 child: const Text(
                   'Cancel',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
