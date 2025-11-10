@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/providers/task_providers.dart';
 import 'package:to_do_app/providers/theme_provider.dart';
-import 'package:to_do_app/screens/add_task_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
+import 'package:to_do_app/widgets/main_navigation.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'OOPS!LIST',
+            navigatorKey: navigatorKey, // ✅ Added
             themeMode: themeProvider.themeMode,
             theme: ThemeData(
               useMaterial3: true,
@@ -42,8 +45,21 @@ class MyApp extends StatelessWidget {
               colorSchemeSeed: Colors.redAccent,
               brightness: Brightness.dark,
             ),
-            home: const SplashScreen(),
-            routes: {'/add_task': (context) => const AddTaskScreen()},
+            home: SplashScreen(
+              onSplashEnd: () {
+                final themeProvider = Provider.of<ThemeProvider>(
+                  navigatorKey.currentContext!,
+                  listen: false,
+                );
+
+                navigatorKey.currentState!.pushReplacement(
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        MainNavigation(themeProvider: themeProvider),
+                  ),
+                );
+              },
+            ),
           );
         },
       ),

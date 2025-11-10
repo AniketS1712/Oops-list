@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:to_do_app/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final VoidCallback onSplashEnd;
+
+  const SplashScreen({super.key, required this.onSplashEnd});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -31,11 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     // Navigate after delay
-    Timer(const Duration(seconds: 3), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
-    });
+    Timer(const Duration(seconds: 3), widget.onSplashEnd);
   }
 
   @override
@@ -59,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
               // App title
               RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   text: 'OOPS',
                   style: TextStyle(
                     color: Colors.black,
@@ -67,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
-                  children: const [
+                  children: [
                     TextSpan(
                       text: '!',
                       style: TextStyle(
