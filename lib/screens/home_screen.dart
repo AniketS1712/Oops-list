@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
-import 'package:to_do_app/widgets/header_section.dart';
-import 'package:to_do_app/widgets/filter_chips_row.dart';
-import 'package:to_do_app/widgets/task_list.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
+import 'package:oops_list/widgets/header_section.dart';
+import 'package:oops_list/widgets/filter_chips_row.dart';
+import 'package:oops_list/widgets/task_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive/hive.dart';
-import 'package:to_do_app/models/task_model.dart';
+import 'package:oops_list/models/task_model.dart';
 
 class TaskProviders extends ChangeNotifier {
   final Box<TaskModel> _taskBox = Hive.box<TaskModel>('taskBox');

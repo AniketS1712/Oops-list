@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
 
 class EditTaskScreen extends StatefulWidget {
   final TaskModel task;

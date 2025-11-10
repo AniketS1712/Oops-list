@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
-import 'package:to_do_app/widgets/calendar_header.dart';
-import 'package:to_do_app/widgets/calendar_view.dart';
-import 'package:to_do_app/widgets/selected_day_task_list.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
+import 'package:oops_list/widgets/calendar_header.dart';
+import 'package:oops_list/widgets/calendar_view.dart';
+import 'package:oops_list/widgets/selected_day_task_list.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({super.key});

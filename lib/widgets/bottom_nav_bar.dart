@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/providers/theme_provider.dart';
+import 'package:oops_list/providers/theme_provider.dart';
 
 class BottomNavBar extends StatelessWidget {
   final ThemeProvider themeProvider;

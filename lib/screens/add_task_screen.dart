@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -66,7 +66,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           content: const Text('Task added! Will you actually do it? 🤔'),
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       );
 
@@ -136,7 +138,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   fillColor: isDark ? Colors.grey[850] : Colors.grey[100],
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.redAccent,
+                      width: 2,
+                    ),
                   ),
                 ),
                 validator: (value) {
@@ -156,7 +161,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 decoration: InputDecoration(
                   labelText: 'Description (Optional)',
                   hintText: 'Details you\'ll probably forget...',
-                  prefixIcon: const Icon(Icons.description, color: Colors.redAccent),
+                  prefixIcon: const Icon(
+                    Icons.description,
+                    color: Colors.redAccent,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -164,7 +172,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   fillColor: isDark ? Colors.grey[850] : Colors.grey[100],
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.redAccent, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.redAccent,
+                      width: 2,
+                    ),
                   ),
                   alignLabelWithHint: true,
                 ),
@@ -192,12 +203,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           Text(
                             'Due Date',
                             style: theme.textTheme.bodySmall?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.6),
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.6,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            DateFormat('EEEE, MMMM dd, yyyy').format(_selectedDate),
+                            DateFormat(
+                              'EEEE, MMMM dd, yyyy',
+                            ).format(_selectedDate),
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.onSurface,
@@ -264,10 +279,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 child: const Text(
                   'Cancel',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

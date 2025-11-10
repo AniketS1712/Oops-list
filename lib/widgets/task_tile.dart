@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/screens/task_detail_screen.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/screens/task_detail_screen.dart';
 
 class TaskTile extends StatelessWidget {
   final TaskModel task;

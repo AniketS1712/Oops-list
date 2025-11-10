@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:to_do_app/models/task_model.dart';
+import 'package:oops_list/models/task_model.dart';
 
 class CalendarView extends StatelessWidget {
   final DateTime focusedDay;

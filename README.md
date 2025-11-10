@@ -9,7 +9,7 @@
 
 A Flutter-based to-do list app with a unique sarcastic personality that judges your productivity (or lack thereof). Because sometimes you need a little sass to get things done! 😏
 
-[🔗 **Live Demo / Download APK**](#) *(Add your link here)*
+[🔗 **Download APK from Google Drive**](https://drive.google.com/file/d/1HdzJc4PRBHH9WBfemfMN0MprlDPAuPcs/view?usp=drive_link)
 
 ---
 
@@ -84,6 +84,11 @@ A Flutter-based to-do list app with a unique sarcastic personality that judges y
 - **Widget Composition** - Reusable, modular widgets
 - **Clean Code** - Well-organized project structure
 
+![Flutter](https://img.shields.io/badge/Flutter-Framework-blue)
+![Hive](https://img.shields.io/badge/Local_DB-Hive-yellow)
+![Provider](https://img.shields.io/badge/State_Management-Provider-green)
+![UI](https://img.shields.io/badge/Design-Material_3-red)
+
 ---
 
 ## 📦 Project Structure
@@ -133,7 +138,7 @@ lib/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/oops-list.git
+   git clone https://github.com/AniketS1712/oops-list.git
    cd oops-list
    ```
 
@@ -296,36 +301,6 @@ Currently, there are no known critical bugs. However:
 
 ---
 
-## 🔮 Future Enhancements
-
-### Planned Features
-- [ ] **Task Categories/Tags** - Organize by project, context, etc.
-- [ ] **Search Functionality** - Find tasks quickly
-- [ ] **Push Notifications** - Reminders for upcoming/overdue tasks
-- [ ] **Task Priority Levels** - High, Medium, Low urgency
-- [ ] **Recurring Tasks** - Daily, weekly, monthly repeats
-- [ ] **Task Notes & Attachments** - Add rich content to tasks
-- [ ] **Export/Import** - Backup tasks to JSON/CSV
-- [ ] **Cloud Sync** - Firebase/Supabase integration
-- [ ] **Widgets** - Home screen widgets for quick access
-- [ ] **Task Sharing** - Collaborate with others
-- [ ] **Custom Sarcasm Levels** - Adjust the sass factor
-- [ ] **Dark Mode Schedule** - Auto-switch based on time
-- [ ] **Productivity Analytics** - Graphs and insights
-- [ ] **Pomodoro Timer** - Built-in focus timer
-- [ ] **Subtasks** - Break down complex tasks
-
-### Technical Improvements
-- [ ] Unit & Widget tests
-- [ ] Integration tests
-- [ ] CI/CD pipeline
-- [ ] Localization (i18n)
-- [ ] Tablet optimization
-- [ ] Web support
-- [ ] Desktop support (Windows/macOS/Linux)
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Whether it's:
@@ -358,7 +333,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```
 MIT License
 
-Copyright (c) 2024 [Your Name]
+Copyright (c) 2024 [Aniket Singhal]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -383,33 +358,10 @@ SOFTWARE.
 
 ## 👨‍💻 Author
 
-**[Your Name]**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-- Email: your.email@example.com
-
----
-
-## 🙏 Acknowledgments
-
-- **Flutter Team** - For the amazing framework
-- **Hive** - For fast local storage
-- **Table Calendar** - For the beautiful calendar widget
-- **Material Design** - For design guidelines
-- **Coffee** ☕ - For making this possible
-- **Procrastination** - For the inspiration 😅
-
----
-
-## 📊 Project Stats
-
-- **Lines of Code**: ~3,500
-- **Widgets**: 30+
-- **Screens**: 7
-- **Development Time**: [Your time]
-- **Sarcastic Messages**: 50+
-- **Fun Level**: Over 9000! 🎉
+**[Aniket Singhal]**
+- GitHub: [@AniketS1712](https://github.com/AniketS1712)
+- LinkedIn: [Aniket Singhal](https://www.linkedin.com/in/aniket-singhal-554b7a2b2)
+- Email: ssinghalaniket@gmail.com
 
 ---
 
@@ -427,8 +379,8 @@ SOFTWARE.
 
 If you like this project, please:
 - ⭐ Star this repository
-- 🐛 Report bugs via [Issues](https://github.com/yourusername/oops-list/issues)
-- 💡 Suggest features via [Discussions](https://github.com/yourusername/oops-list/discussions)
+- 🐛 Report bugs via [Issues](https://github.com/AniketS1712/oops-list/issues)
+- 💡 Suggest features via [Discussions](https://github.com/AniketS1712/oops-list/discussions)
 - 📢 Share with friends!
 
 ---

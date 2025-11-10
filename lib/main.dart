@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
-import 'package:to_do_app/providers/theme_provider.dart';
-import 'package:to_do_app/screens/splash_screen.dart';
-import 'package:to_do_app/widgets/main_navigation.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
+import 'package:oops_list/providers/theme_provider.dart';
+import 'package:oops_list/screens/splash_screen.dart';
+import 'package:oops_list/widgets/main_navigation.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

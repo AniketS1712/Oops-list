@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/providers/task_providers.dart';
-import 'package:to_do_app/providers/theme_provider.dart';
+import 'package:oops_list/providers/task_providers.dart';
+import 'package:oops_list/providers/theme_provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

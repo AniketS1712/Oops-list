@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/models/task_model.dart';
-import 'package:to_do_app/providers/task_providers.dart';
-import 'package:to_do_app/screens/edit_task_screen.dart';
+import 'package:oops_list/models/task_model.dart';
+import 'package:oops_list/providers/task_providers.dart';
+import 'package:oops_list/screens/edit_task_screen.dart';
 
 class TaskDetailScreen extends StatelessWidget {
   final TaskModel task;
@@ -33,9 +33,7 @@ class TaskDetailScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => EditTaskScreen(task: task),
-                ),
+                MaterialPageRoute(builder: (_) => EditTaskScreen(task: task)),
               );
             },
           ),
@@ -61,7 +59,9 @@ class TaskDetailScreen extends StatelessWidget {
                         Navigator.pop(context); // Go back to home
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Task deleted. Out of sight, out of mind! 🗑️'),
+                            content: Text(
+                              'Task deleted. Out of sight, out of mind! 🗑️',
+                            ),
                           ),
                         );
                       },
@@ -87,15 +87,15 @@ class TaskDetailScreen extends StatelessWidget {
                 color: task.isCompleted
                     ? Colors.green.withOpacity(0.1)
                     : isOverdue
-                        ? Colors.red.withOpacity(0.1)
-                        : Colors.blue.withOpacity(0.1),
+                    ? Colors.red.withOpacity(0.1)
+                    : Colors.blue.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: task.isCompleted
                       ? Colors.green
                       : isOverdue
-                          ? Colors.red
-                          : Colors.blue,
+                      ? Colors.red
+                      : Colors.blue,
                   width: 2,
                 ),
               ),
@@ -105,13 +105,13 @@ class TaskDetailScreen extends StatelessWidget {
                     task.isCompleted
                         ? Icons.check_circle
                         : isOverdue
-                            ? Icons.warning
-                            : Icons.pending,
+                        ? Icons.warning
+                        : Icons.pending,
                     color: task.isCompleted
                         ? Colors.green
                         : isOverdue
-                            ? Colors.red
-                            : Colors.blue,
+                        ? Colors.red
+                        : Colors.blue,
                     size: 32,
                   ),
                   const SizedBox(width: 12),
@@ -123,23 +123,23 @@ class TaskDetailScreen extends StatelessWidget {
                           task.isCompleted
                               ? 'Completed'
                               : isOverdue
-                                  ? 'Overdue'
-                                  : 'Pending',
+                              ? 'Overdue'
+                              : 'Pending',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: task.isCompleted
                                 ? Colors.green
                                 : isOverdue
-                                    ? Colors.red
-                                    : Colors.blue,
+                                ? Colors.red
+                                : Colors.blue,
                           ),
                         ),
                         Text(
                           task.isCompleted
                               ? 'Wow, you actually did it!'
                               : isOverdue
-                                  ? 'This was supposed to be done already 😬'
-                                  : 'Better get started soon!',
+                              ? 'This was supposed to be done already 😬'
+                              : 'Better get started soon!',
                           style: theme.textTheme.bodySmall,
                         ),
                       ],
@@ -177,7 +177,9 @@ class TaskDetailScreen extends StatelessWidget {
                 task.title,
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  decoration: task.isCompleted ? TextDecoration.lineThrough : null,
+                  decoration: task.isCompleted
+                      ? TextDecoration.lineThrough
+                      : null,
                 ),
               ),
             ),
@@ -200,7 +202,9 @@ class TaskDetailScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(
-                task.description.isEmpty ? 'No description provided' : task.description,
+                task.description.isEmpty
+                    ? 'No description provided'
+                    : task.description,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: task.description.isEmpty
                       ? theme.colorScheme.onSurface.withOpacity(0.5)
@@ -247,10 +251,7 @@ class TaskDetailScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.hourglass_bottom,
-                      color: Colors.orange,
-                    ),
+                    Icon(Icons.hourglass_bottom, color: Colors.orange),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -259,7 +260,9 @@ class TaskDetailScreen extends StatelessWidget {
                           Text(
                             'Time Remaining',
                             style: theme.textTheme.labelMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withOpacity(0.6),
+                              color: theme.colorScheme.onSurface.withOpacity(
+                                0.6,
+                              ),
                             ),
                           ),
                           Text(
@@ -288,7 +291,9 @@ class TaskDetailScreen extends StatelessWidget {
 
     if (difference.isNegative) {
       final days = difference.inDays.abs();
-      return days == 0 ? 'Overdue by today' : 'Overdue by $days day${days > 1 ? 's' : ''}';
+      return days == 0
+          ? 'Overdue by today'
+          : 'Overdue by $days day${days > 1 ? 's' : ''}';
     }
 
     if (difference.inDays == 0) {

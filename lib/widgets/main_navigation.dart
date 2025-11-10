@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/providers/theme_provider.dart';
-import 'package:to_do_app/screens/add_task_screen.dart';
-import 'package:to_do_app/screens/home_screen.dart';
-import 'package:to_do_app/screens/calendar_screen.dart';
-import 'package:to_do_app/screens/profile_screen.dart';
-import 'package:to_do_app/widgets/bottom_nav_bar.dart';
+import 'package:oops_list/providers/theme_provider.dart';
+import 'package:oops_list/screens/add_task_screen.dart';
+import 'package:oops_list/screens/home_screen.dart';
+import 'package:oops_list/screens/calendar_screen.dart';
+import 'package:oops_list/screens/profile_screen.dart';
+import 'package:oops_list/widgets/bottom_nav_bar.dart';
 
 class MainNavigation extends StatefulWidget {
   final ThemeProvider themeProvider;
