@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/models/task_model.dart';
+import 'package:to_do_app/screens/task_detail_screen.dart';
 
 class TaskTile extends StatelessWidget {
   final TaskModel task;
@@ -56,6 +57,12 @@ class TaskTile extends StatelessWidget {
             horizontal: 16,
             vertical: 8,
           ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => TaskDetailScreen(task: task)),
+            );
+          },
           leading: Checkbox(
             activeColor: Colors.redAccent,
             shape: RoundedRectangleBorder(
