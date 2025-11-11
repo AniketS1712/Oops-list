@@ -7,13 +7,16 @@ import 'package:oops_list/providers/theme_provider.dart';
 import 'package:oops_list/screens/splash_screen.dart';
 import 'package:oops_list/widgets/main_navigation.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(TaskModelAdapter());
-  await Hive.openBox<TaskModel>('taskBox');
+
+  try {
+    await Hive.initFlutter();
+    Hive.registerAdapter(TaskModelAdapter());
+    await Hive.openBox<TaskModel>('taskBox');
+  } catch (e) {
+    debugPrint('Hive initialization error: $e');
+  }
 
   runApp(const MyApp());
 }
@@ -33,7 +36,6 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'OOPS!LIST',
-            navigatorKey: navigatorKey, // ✅ Added
             themeMode: themeProvider.themeMode,
             theme: ThemeData(
               useMaterial3: true,
@@ -47,15 +49,14 @@ class MyApp extends StatelessWidget {
             ),
             home: SplashScreen(
               onSplashEnd: () {
-                final themeProvider = Provider.of<ThemeProvider>(
-                  navigatorKey.currentContext!,
-                  listen: false,
-                );
-
-                navigatorKey.currentState!.pushReplacement(
+                Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (_) =>
-                        MainNavigation(themeProvider: themeProvider),
+                    builder: (context) => MainNavigation(
+                      themeProvider: Provider.of<ThemeProvider>(
+                        context,
+                        listen: false,
+                      ),
+                    ),
                   ),
                 );
               },
